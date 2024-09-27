@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.hengsen.nthgrow",
+    "sha256_cert_fingerprints":
+    ["EC:AB:34:1A:F6:25:33:4A:99:17:A5:59:C3:C1:24:F1:76:55:7B:E6:CE:19:B1:99:7D:F1:4F:B9:11:31:6A:AF", "83:0E:2A:3A:0F:2C:40:5A:38:8D:44:EE:A8:BD:65:F7:76:35:D5:63:A7:27:1B:D7:A0:E8:BB:06:82:3D:7C:4D"]
+  }
+}]
