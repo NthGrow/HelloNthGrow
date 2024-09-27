@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NthGrow APP - Smart Gardening at Your Fingertips</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: rgba(76, 175, 80, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        .nav-links a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        #scene-container {
+            width: 100%;
+            height: 30vh; /* Reduced from 40vh */
+            position: relative;
+            z-index: 1;
+            margin-top: 60px;
+            margin-bottom: -20px; /* Add negative margin to bring title closer */
+        }
+        .hero {
+            padding-top: 1rem;
+        }
+        .hero-content {
+            padding: 1rem 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #4CAF50;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+            /* #scene-container {
+                height: 50vh;
+            } */
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NthGrow</div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="scene-container"></div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Smart Gardening at Your Fingertips</h1>
+                <p>Experience the joy of gardening with cutting-edge technology. NthGrow APP brings nature and innovation together, helping you cultivate your green space effortlessly.</p>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Our Smart Ecosystem</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Hydroponics Planter</h3>
+                    <p>Grow plants without soil, efficiently and cleanly</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Smart Growing Light</h3>
+                    <p>Provide optimal lighting for your plants' growth</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Intelligent Seeding Box</h3>
+                    <p>Start your plants off right with controlled germination</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Mobile App</h3>
+                    <p>Monitor and control all your devices from anywhere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NthGrow APP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight * 0.4);
+        document.getElementById('scene-container').appendChild(renderer.domElement);
+
+        // Create a stylized tree
+        function createTree() {
+            const tree = new THREE.Group();
+
+            // Adjust trunk size and position
+            const trunkGeometry = new THREE.CylinderGeometry(0.3, 0.4, 2, 8);
+            const trunkMaterial = new THREE.MeshPhongMaterial({ color: 0x8B4513 });
+            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
+            trunk.position.y = 1;
+            tree.add(trunk);
+
+            // Adjust leaves size and position
+            const leavesGeometry = new THREE.ConeGeometry(2, 4, 8);
+            const leavesMaterial = new THREE.MeshPhongMaterial({ color: 0x228B22 });
+            const leaves1 = new THREE.Mesh(leavesGeometry, leavesMaterial);
+            leaves1.position.y = 3;
+            tree.add(leaves1);
+
+            const leaves2 = new THREE.Mesh(leavesGeometry, leavesMaterial);
+            leaves2.position.y = 4.5;
+            leaves2.scale.set(0.8, 0.8, 0.8);
+            tree.add(leaves2);
+
+            const leaves3 = new THREE.Mesh(leavesGeometry, leavesMaterial);
+            leaves3.position.y = 5.5;
+            leaves3.scale.set(0.6, 0.6, 0.6);
+            tree.add(leaves3);
+
+            return tree;
+        }
+
+        const tree = createTree();
+        tree.scale.set(1.2, 1.2, 1.2); // Slightly reduce the overall scale
+        tree.position.y = -3; // Move the tree down to center it in the view
+        scene.add(tree);
+
+        // Add lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        camera.position.z = 10;
+        camera.position.y = 2;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            tree.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        function onWindowResize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight * 0.3; // Match the new container height
+            
+            camera.aspect = width / height;
+            renderer.setSize(width, height);
+            
+            camera.updateProjectionMatrix();
+        }
+
+        window.addEventListener('resize', onWindowResize);
+        onWindowResize(); // Call once to set initial size
+    </script>
+</body>
+</html>
